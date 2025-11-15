@@ -6,17 +6,17 @@ public partial class KrediHesaplama : ContentPage
     {
         InitializeComponent();
     }
-    // Bu metot, Slider her kaydırıldığında çalışır
+    // Bu metot, Slider her kaydÄ±rÄ±ldÄ±ÄŸÄ±nda Ã§alÄ±ÅŸÄ±r
     private void vadeSlider_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        // Slider'ın yeni değerini al, tamsayıya çevir
+        // Slider'Ä±n yeni deÄŸerini al, tamsayÄ±ya Ã§evir
         int vade = (int)e.NewValue;
-        // Bu değeri yandaki 'VadeEntry' (metin kutusuna) yaz
+        // Bu deÄŸeri yandaki 'VadeEntry' (metin kutusuna) yaz
         VadeEntry.Text = vade.ToString();
     }
 
    
-    // Bu metot, Metin Kutusuna yazıp 'Enter'a basınca çalışır
+    // Bu metot, Metin Kutusuna yazÄ±p 'Enter'a basÄ±nca Ã§alÄ±ÅŸÄ±r
     private void VadeEntry_Completed(object sender, EventArgs e)
     {
         
@@ -33,72 +33,72 @@ public partial class KrediHesaplama : ContentPage
                 vade = 120;
                 VadeEntry.Text = "120"; 
             }
-            // Slider'ın topuzunu metin kutusundaki yeni değere getir
+            // Slider'Ä±n topuzunu metin kutusundaki yeni deÄŸere getir
             vadeSlider.Value = vade;
         }
         else
         {
-            // Eğer kullanıcı geçersiz bir şey yazdıysa (örn: "abc"),
-            // slider'daki mevcut değeri metin kutusuna geri yazarak düzelt.
+            // EÄŸer kullanÄ±cÄ± geÃ§ersiz bir ÅŸey yazdÄ±ysa (Ã¶rn: "abc"),
+            // slider'daki mevcut deÄŸeri metin kutusuna geri yazarak dÃ¼zelt.
             VadeEntry.Text = vadeSlider.Value.ToString();
         }
     }
-    // Bu metot, 'Hesapla' butonuna tıklandığında çalışır
+    // Bu metot, 'Hesapla' butonuna tÄ±klandÄ±ÄŸÄ±nda Ã§alÄ±ÅŸÄ±r
     private void hesaplaButton_Clicked(object sender, EventArgs e)
     {
             if (!double.TryParse(tutarEntry.Text, out double tutar) || tutar <= 0)
         {
-            DisplayAlert("Hata", "Lütfen geçerli bir kredi tutarı girin.", "Tamam");
+            DisplayAlert("Hata", "LÃ¼tfen geÃ§erli bir kredi tutarÄ± girin.", "Tamam");
             return;
         }
 
         if (!double.TryParse(faizEntry.Text, out double aylikFaiz) || aylikFaiz <= 0)
         {
-            DisplayAlert("Hata", "Lütfen geçerli bir faiz oranı girin.", "Tamam");
+            DisplayAlert("Hata", "LÃ¼tfen geÃ§erli bir faiz oranÄ± girin.", "Tamam");
             return;
         }
 
         if (krediTipiPicker.SelectedItem == null)
         {
-            DisplayAlert("Hata", "Lütfen bir kredi türü seçin.", "Tamam");
+            DisplayAlert("Hata", "LÃ¼tfen bir kredi tÃ¼rÃ¼ seÃ§in.", "Tamam");
             return;
         }
 
-        // Vadeyi doğrula. Metin kutusu ve slider zaten senkron.
-        // O yüzden VadeEntry'den okumamız yeterli.
+        // Vadeyi doÄŸrula. Metin kutusu ve slider zaten senkron.
+        // O yÃ¼zden VadeEntry'den okumamÄ±z yeterli.
         if (!int.TryParse(VadeEntry.Text, out int vade) || vade < 1 || vade > 120)
         {
-            DisplayAlert("Hata", "Lütfen geçerli bir vade (1-120 ay) girin.", "Tamam");
-            // Hatalıysa slider'dan alıp düzeltelim
+            DisplayAlert("Hata", "LÃ¼tfen geÃ§erli bir vade (1-120 ay) girin.", "Tamam");
+            // HatalÄ±ysa slider'dan alÄ±p dÃ¼zeltelim
             VadeEntry.Text = vadeSlider.Value.ToString();
             vade = (int)vadeSlider.Value;
         }
 
-        double Oran = aylikFaiz; // Kullanıcının girdiği yüzde 
+        double Oran = aylikFaiz; // KullanÄ±cÄ±nÄ±n girdiÄŸi yÃ¼zde 
         double Tutar = tutar;
         int Vade = vade;
         string krediTuru = krediTipiPicker.SelectedItem.ToString();
 
-        // BSMV ve KKDF oranları için değişkenler (ondalık olarak)
+        // BSMV ve KKDF oranlarÄ± iÃ§in deÄŸiÅŸkenler (ondalÄ±k olarak)
         double BSMV = 0.0;
         double KKDF = 0.0;
 
 
         switch (krediTuru)
         {
-            case "İhtiyaç Kredisi":
+            case "Ä°htiyaÃ§ Kredisi":
                 KKDF = 0.15; // KKDF %15
                 BSMV = 0.10; // BSMV %10
                 break;
 
-            case "Taşıt Kredisi":
+            case "TaÅŸÄ±t Kredisi":
                 KKDF = 0.15; // KKDF %15
                 BSMV = 0.05; // BSMV %5
                 break;
 
             case "Konut Kredisi":
-                KKDF = 0.0;  // Muaf
-                BSMV = 0.0;  // Muaf
+                KKDF = 0.0;  
+                BSMV = 0.0; 
                 break;
             
             case "Ticari Kredi":
@@ -107,11 +107,11 @@ public partial class KrediHesaplama : ContentPage
                 break;
         }
 
-        // 3. Brüt Faizi 
+        //BrÃ¼t Faizi 
 
         double brutFaiz = ((Oran + (Oran * BSMV) + (Oran * KKDF)) / 100);
 
-        // 4. Taksit Hesaplama
+        //Taksit Hesaplama
         double taksit;
 
         if (brutFaiz > 0) 
@@ -122,22 +122,19 @@ public partial class KrediHesaplama : ContentPage
         }
         else
         {
-            // Eğer faiz 0 ise (örn: Konut Kredisi ve faiz 0 girildi)
+            // EÄŸer faiz 0 ise 
             taksit = Tutar / Vade;
         }
-
-        // 5. Kalan Hesaplamalar
         // toplam = taksit * Vade;
         double toplamOdeme = taksit * Vade;
         double toplamFaiz = toplamOdeme - Tutar;
 
-
-        // --- 3. Sonuçları Ekrana Yazdırma ---
         aylikTaksitLabel.Text = $"{taksit:C}";
         toplamOdemeLabel.Text = $"{toplamOdeme:C}";
         toplamFaizLabel.Text = $"{toplamFaiz:C}";
     }
 } 
+
 
 
 
