@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.AnaSayfa"
+             Title="Ana Sayfa"
+              Shell.TitleColor="#00CCCC">
+    <VerticalStackLayout
+        Padding="10"
+        Spacing="10"
+        >
+        <Image Source="ben.jpg" HeightRequest="300" WidthRequest="250" Aspect="AspectFill" />
+
+        <Label Padding="50"
+            Text="Merhaba Ben Elanur Beycan :) "
+            FontSize="20"
+            FontAttributes="Bold"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
+          
+                 /> 
+        <Label Text="Bartın Üniversitesi Bilgisayar Mühendisliği &#10; 3.sınıf öğrencisiyim."
+            FontSize="18"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="WordWrap"
+               />
+
+    </VerticalStackLayout>
+</ContentPage>
+    

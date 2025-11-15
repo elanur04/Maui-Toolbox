@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp1"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MauiApp1">
+
+    <FlyoutItem Title="Ana Sayfa"
+                Icon="home.png">
+        <ShellContent 
+            Title="Ana Sayfa" 
+            ContentTemplate="{DataTemplate local:AnaSayfa}"
+            Route="Ana Sayfa"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Kredi Hesaplama"
+                
+                Icon="kredi.png">
+        <ShellContent
+            Title="Kredi Hesaplama"
+            ContentTemplate="{DataTemplate local:KrediHesaplama}"
+            Route="KrediHesaplama" />
+           
+    </FlyoutItem>
+
+    <FlyoutItem Title="Vücut Kitle İndeksi"
+                Icon="vki.png">
+        <ShellContent 
+            Title="Vücut Kitle İndeksi" 
+            ContentTemplate="{DataTemplate local:VkiHesaplama}"
+            Route="Vücut Kitle İndeksi"/>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Renk Seçici"
+                Icon="rgb.png">
+        <ShellContent 
+            Title="Renk Seçimi" 
+            ContentTemplate="{DataTemplate local:RenkSecici}"
+            Route="Renk Seçici"/>
+    </FlyoutItem>
+
+
+
+</Shell>

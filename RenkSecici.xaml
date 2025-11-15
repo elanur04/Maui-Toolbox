@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.RenkSecici"
+             Title="Renk Seçimi">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <VerticalStackLayout Grid.Row="0" Padding="30" Spacing="15">
+            
+            <Label 
+            Text="Renk Seçici"
+            FontAttributes="Bold"
+            FontSize="28"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Label
+            Text ="Kırmızı Ton:"
+            FontSize="Medium"
+            TextColor ="Red"
+                        />
+        <Slider x:Name="redSlider"
+            Minimum="0"
+            Maximum="255"
+            MinimumTrackColor="Red"   
+            ThumbColor="Red"
+            ValueChanged="Renk_Slider_ValueChanged"    />   
+
+           <Label x:Name="redLabel"  Grid.Column="2" VerticalOptions="Center"/>
+            
+        <Label
+            Text ="Yeşil Ton:"
+            FontSize="Medium"
+            TextColor ="Green"
+                        />
+        <Slider x:Name="greenSlider"
+            Minimum="0"
+            Maximum="255"
+            MinimumTrackColor="Green"   
+            ThumbColor="green"
+            ValueChanged="Renk_Slider_ValueChanged"    />
+            <Label x:Name="greenLabel"  Grid.Column="2" VerticalOptions="Center"/>
+
+        <Label
+            Text ="Mavi Ton:"
+            FontSize="Medium"
+            TextColor ="Blue"
+                        />
+        <Slider x:Name="blueSlider"
+            Minimum="0"
+            Maximum="255"
+            MinimumTrackColor="blue"   
+            ThumbColor="blue"
+            ValueChanged="Renk_Slider_ValueChanged"     />
+
+            <Label x:Name="blueLabel"  Grid.Column="2" VerticalOptions="Center"/>
+            
+            <Frame Margin="0,10,0,0" Padding="15" BorderColor="Gainsboro">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                        <Label x:Name="hexLabel"
+                               Text="#808080"
+                               FontSize="22"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+
+                        <ImageButton Grid.Column="1"
+                                     Source="copy.png" Clicked="KopyalaButton_Clicked"
+                                     HeightRequest="30"
+                                     WidthRequest="30"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="End"/>
+                    </Grid>
+
+                    <Button Text="Random Color"
+                            BackgroundColor="Black"
+                            Clicked="RastgeleButton_Clicked" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+        </VerticalStackLayout>
+
+
+        <BoxView x:Name="renkKutusu"
+                 Grid.Row="1"
+                 BackgroundColor="#808080" />
+
+    </Grid>
+
+</ContentPage>
